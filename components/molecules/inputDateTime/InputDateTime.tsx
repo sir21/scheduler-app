@@ -1,16 +1,13 @@
 import { Pressable, StyleSheet, View } from "react-native";
-import DateTimePicker, {
-  DateTimePickerEvent,
-} from "@react-native-community/datetimepicker";
 import DisplayDateTime from "../../atoms/displayDateTime/DisplayDateTime";
 import ModalDisplay from "../modalDisplay/ModalDisplay";
 import { useState } from "react";
 
-const InputDateTime = (props) => {
+const InputDateTime = ({ label, mode, value }: InputDateTimeProps) => {
   /**
    * CONSTANTS
    */
-  const [value, setValue] = useState<Date>(props.value);
+  const [date, setDate] = useState<Date>(value);
   const [visible, setVisible] = useState<boolean>(false);
 
   /**
@@ -20,11 +17,11 @@ const InputDateTime = (props) => {
     setVisible(true);
   };
 
-  const handleOnChange = (e: DateTimePickerEvent, date?: Date) => {
-    console.log(e.type, date);
-    setVisible(false);
-    setValue(date);
-  };
+  // const handleOnChange = (e: DateTimePickerEvent, date?: Date) => {
+  //   console.log(e.type, date);
+  //   setVisible(false);
+  //   setValue(date);
+  // };
 
   /**
    * RENDER FUNCTIONS
@@ -43,24 +40,28 @@ const InputDateTime = (props) => {
         >
           <DisplayDateTime
             value={
-              props.mode === "date"
-                ? value.toDateString()
-                : value.toTimeString()
+              mode === "date" ? value.toDateString() : value.toTimeString()
             }
-            label={props.label}
+            label={label}
           />
         </Pressable>
       </View>
       <ModalDisplay visible={visible}>
-        <DateTimePicker
+        {/* <DateTimePicker
           testID="dateTimePicker"
           value={value}
           mode={props.mode}
           onChange={handleOnChange}
-        />
+        /> */}
       </ModalDisplay>
     </>
   );
+};
+
+type InputDateTimeProps = {
+  value: Date;
+  mode: "time" | "date";
+  label: string;
 };
 
 const styles = StyleSheet.create({

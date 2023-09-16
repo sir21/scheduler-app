@@ -18,13 +18,11 @@ const FilterSection = () => {
   return (
     <View style={styles.inputContainer}>
       <InputDateTime
-        onChange={handleOnChangeDate}
         label="Date"
         value={date}
         mode={"date"}
       />
       <InputDateTime
-        onChange={handleOnChangeTime}
         label="Timeslot"
         value={timeSlot}
         mode={"time"}
