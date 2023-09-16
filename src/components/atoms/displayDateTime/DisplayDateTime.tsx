@@ -1,21 +1,17 @@
 import { StyleSheet, View } from "react-native";
 import { TextInput } from "react-native-paper";
 
-const InputText = (props) => {
+const DisplayDateTime = (props) => {
   return (
-    <View style={styles.inputView}>
+    <View style={styles.inputView} pointerEvents="none">
       <TextInput
         label={props.label}
         value={props.value}
-        onChangeText={props.onChangeText}
-        onPressIn={props.onPressIn}
         style={styles.input}
       />
     </View>
   );
 };
-
-export default InputText;
 
 const styles = StyleSheet.create({
   inputView: {
@@ -25,3 +21,5 @@ const styles = StyleSheet.create({
     paddingHorizontal: 0,
   },
 });
+
+export default DisplayDateTime;

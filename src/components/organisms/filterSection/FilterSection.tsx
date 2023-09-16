@@ -1,51 +1,42 @@
 import { StyleSheet, View } from "react-native";
-import InputText from "../../atoms/inputText/InputText";
+import DisplayDateTime from "../../atoms/displayDateTime/DisplayDateTime";
 import { useState } from "react";
+import InputDateTime from "../../molecules/inputDateTime/InputDateTime";
 
 const FilterSection = () => {
-  const [date, setDate] = useState("");
-  const [TimeSlot, setTimeSlot] = useState("");
+  const [date, setDate] = useState<Date>(new Date());
+  const [timeSlot, setTimeSlot] = useState<Date>(new Date());
 
-  const handleOnChangeDate = (change: string) => {
-    console.log(change);
+  const handleOnChangeDate = (change: Date) => {
     setDate(change);
   };
 
-  const handleOnChangeTime = (change: string) => {
-    console.log(change);
+  const handleOnChangeTime = (change: Date) => {
     setTimeSlot(change);
-  };
-
-  const handleDateInputPress = () => {
-    console.log("press");
-  };
-
-  const handleTimeSlotInputPress = () => {
-    console.log("press");
   };
 
   return (
     <View style={styles.inputContainer}>
-      <InputText
-        value={date}
+      <InputDateTime
+        onChange={handleOnChangeDate}
         label="Date"
-        onChangeText={handleOnChangeDate}
-        onPressIn={handleDateInputPress}
+        value={date}
+        mode={"date"}
       />
-      <InputText
+      <InputDateTime
+        onChange={handleOnChangeTime}
         label="Timeslot"
-        value={TimeSlot}
-        onChangeText={handleOnChangeTime}
-        onPressIn={handleTimeSlotInputPress}
+        value={timeSlot}
+        mode={"time"}
       />
     </View>
   );
 };
-
-export default FilterSection;
 
 const styles = StyleSheet.create({
   inputContainer: {
     width: "100%",
   },
 });
+
+export default FilterSection;
