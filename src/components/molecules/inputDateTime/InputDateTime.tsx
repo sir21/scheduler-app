@@ -1,4 +1,4 @@
-import { Pressable } from "react-native";
+import { Pressable, StyleSheet, View } from "react-native";
 import DateTimePicker, {
   DateTimePickerEvent,
 } from "@react-native-community/datetimepicker";
@@ -21,7 +21,7 @@ const InputDateTime = (props) => {
   };
 
   const handleOnChange = (e: DateTimePickerEvent, date?: Date) => {
-    console.log('change', date);
+    console.log(e.type, date);
     setVisible(false);
     setValue(date);
   };
@@ -31,26 +31,50 @@ const InputDateTime = (props) => {
    */
   return (
     <>
-      <Pressable onPress={handleOnPress}>
-        <DisplayDateTime
-          value={
-            props.mode === "date" ? value.toDateString() : value.toTimeString()
+      <View style={styles.displayContainer}>
+        <Pressable
+          style={({ pressed }) =>
+            pressed
+              ? [styles.pressableContainer, styles.pressed]
+              : styles.pressableContainer
           }
-          label={props.label}
-        />
-      </Pressable>
+          onPress={handleOnPress}
+          android_ripple={{ color: "#ccc" }}
+        >
+          <DisplayDateTime
+            value={
+              props.mode === "date"
+                ? value.toDateString()
+                : value.toTimeString()
+            }
+            label={props.label}
+          />
+        </Pressable>
+      </View>
       <ModalDisplay visible={visible}>
         <DateTimePicker
           testID="dateTimePicker"
           value={value}
           mode={props.mode}
-          is24Hour={true}
           onChange={handleOnChange}
-          collapsable={false}
         />
       </ModalDisplay>
     </>
   );
 };
+
+const styles = StyleSheet.create({
+  displayContainer: {
+    borderRadius: 20,
+    margin: 4,
+    overflow: "hidden",
+  },
+  pressableContainer: {
+    paddingVertical: 8,
+  },
+  pressed: {
+    opacity: 0.75,
+  },
+});
 
 export default InputDateTime;
