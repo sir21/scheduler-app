@@ -3,18 +3,7 @@ import DisplayDateTime from "../../atoms/displayDateTime/DisplayDateTime";
 import { useState } from "react";
 import InputDateTime from "../../molecules/inputDateTime/InputDateTime";
 
-const FilterSection = () => {
-  const [date, setDate] = useState<Date>(new Date());
-  const [timeSlot, setTimeSlot] = useState<Date>(new Date());
-
-  const handleOnChangeDate = (change: Date) => {
-    setDate(change);
-  };
-
-  const handleOnChangeTime = (change: Date) => {
-    setTimeSlot(change);
-  };
-
+const FilterSection = ({date, timeslot, onDateChange, onTimeChange}: FilterSectionProps) => {
   return (
     <View style={styles.inputContainer}>
       <InputDateTime
@@ -24,12 +13,19 @@ const FilterSection = () => {
       />
       <InputDateTime
         label="Timeslot"
-        value={timeSlot}
+        value={timeslot}
         mode={"time"}
       />
     </View>
   );
 };
+
+type FilterSectionProps = {
+  date: Date;
+  timeslot: Date;
+  onDateChange: (date: Date) => void;
+  onTimeChange: (date: Date) => void;
+}
 
 const styles = StyleSheet.create({
   inputContainer: {
