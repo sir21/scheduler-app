@@ -1,6 +1,5 @@
 import { Pressable, StyleSheet, View } from "react-native";
 import DisplayDateTime from "../../atoms/displayDateTime/DisplayDateTime";
-import ModalDisplay from "../modalDisplay/ModalDisplay";
 import { useState } from "react";
 
 const InputDateTime = ({ label, mode, value }: InputDateTimeProps) => {
@@ -36,7 +35,6 @@ const InputDateTime = ({ label, mode, value }: InputDateTimeProps) => {
               : styles.pressableContainer
           }
           onPress={handleOnPress}
-          android_ripple={{ color: "#ccc" }}
         >
           <DisplayDateTime
             value={
@@ -46,14 +44,7 @@ const InputDateTime = ({ label, mode, value }: InputDateTimeProps) => {
           />
         </Pressable>
       </View>
-      <ModalDisplay visible={visible}>
-        {/* <DateTimePicker
-          testID="dateTimePicker"
-          value={value}
-          mode={props.mode}
-          onChange={handleOnChange}
-        /> */}
-      </ModalDisplay>
+      {/** Modal will come here */}
     </>
   );
 };
@@ -74,7 +65,7 @@ const styles = StyleSheet.create({
     paddingVertical: 8,
   },
   pressed: {
-    opacity: 0.75,
+    opacity: 0.5,
   },
 });
 

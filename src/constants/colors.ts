@@ -5,6 +5,7 @@ const Colors = {
     error: "#d32f2f",
     background: "#FFFFFF",
     surfaceVariant: "#FFFFFF",
+    shadowColor: "#000000"
 };
 
 export default Colors;

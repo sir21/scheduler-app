@@ -6,6 +6,9 @@ const AppBar = ({
   onBackButtonClick,
   onCameraButtonClick,
 }: AppBarProps) => {
+    /**
+   * RENDER FUNCTIONS
+   */
   return (
     <Appbar.Header safeAreaInsets={{ top: 0 }} statusBarHeight={0}>
       {onBackButtonClick && <Appbar.BackAction onPress={onBackButtonClick} />}
@@ -23,7 +26,5 @@ type AppBarProps = {
   onBackButtonClick?: () => void;
   onCameraButtonClick?: () => void;
 };
-
-const styles = StyleSheet.create({});
 
 export default AppBar;
