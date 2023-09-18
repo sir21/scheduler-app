@@ -3,7 +3,7 @@ import DisplayDateTime from "../../atoms/displayDateTime/DisplayDateTime";
 import { useState } from "react";
 import DatePicker from "react-native-date-picker";
 
-const InputDate = ({ label, value }: InputDateProps) => {
+const InputDate = ({ label, value, onDateChange }: InputDateProps) => {
   /**
    * CONSTANTS
    */
@@ -20,6 +20,7 @@ const InputDate = ({ label, value }: InputDateProps) => {
   const handleOnConfirm = (newDate: Date) => {
     setDate(newDate);
     toggleDatePicker(false);
+    onDateChange(newDate);
   };
 
   /**
@@ -53,6 +54,7 @@ const InputDate = ({ label, value }: InputDateProps) => {
 type InputDateProps = {
   value: Date;
   label: string;
+  onDateChange: (date: Date) => void;
 };
 
 const styles = StyleSheet.create({

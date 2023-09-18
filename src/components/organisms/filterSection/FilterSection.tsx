@@ -11,17 +11,21 @@ const FilterSection = ({
 }: FilterSectionProps) => {
   return (
     <View style={styles.inputContainer}>
-      <InputDate label="Date" value={date} />
-      <InputTimeslot label="Timeslot" value={timeslot} />
+      <InputDate label="Date" value={date} onDateChange={onDateChange} />
+      <InputTimeslot
+        label="Timeslot"
+        value={timeslot}
+        onTimeslotChange={onTimeChange}
+      />
     </View>
   );
 };
 
 type FilterSectionProps = {
   date: Date;
-  timeslot: Timeslot;
+  timeslot: string;
   onDateChange: (date: Date) => void;
-  onTimeChange: (date: Timeslot) => void;
+  onTimeChange: (date: string) => void;
 };
 
 const styles = StyleSheet.create({

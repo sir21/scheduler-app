@@ -5,14 +5,14 @@ import AppBar from "../../components/atoms/appBar/AppBar";
 import Colors from "../../util/constants/colors";
 import RoomList from "../../components/organisms/roomList/RoomList";
 import { getAvailability } from "../../util/requests/requests";
-import { RoomAvailability, Timeslot } from "../../util/common";
+import { RoomAvailability } from "../../util/common";
 
 const Home = () => {
   /**
    * CONSTANTS, STATES
    */
   const [selectedDate, setSelectedDate] = useState<Date>(new Date());
-  const [selectedTimeslot, setSelectedTimeslot] = useState<Timeslot>("08:00");
+  const [selectedTimeslot, setSelectedTimeslot] = useState<string>("08:00 AM");
   const [showCamera, setShowCamera] = useState(false);
   const [availabilities, setAvailabilities] = useState<RoomAvailability[]>([]);
 
@@ -23,7 +23,7 @@ const Home = () => {
     setSelectedDate(date);
   };
 
-  const handleTimeChange = (timeslot: Timeslot) => {
+  const handleTimeChange = (timeslot: string) => {
     setSelectedTimeslot(timeslot);
   };
 

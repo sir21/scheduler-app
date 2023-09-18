@@ -1,15 +1,20 @@
-import { Pressable, StyleSheet, View } from "react-native";
-import DisplayDateTime from "../../atoms/displayDateTime/DisplayDateTime";
 import { useState } from "react";
-import { Timeslot } from "../../../util/common";
-import { Timeslots } from "../../../util/constants/timeslots";
+import { StyleSheet, View } from "react-native";
+import { Dropdown } from "react-native-element-dropdown";
 
-const InputTimeslot = ({ label, value }: InputDateTimeProps) => {
+import { Timeslots } from "../../../util/constants/timeslots";
+import { Divider, Text } from "react-native-paper";
+
+const InputTimeslot = ({
+  label,
+  value,
+  onTimeslotChange,
+}: InputDateTimeProps) => {
   /**
    * CONSTANTS
    */
-  const [timeslot, setTimeslot] = useState<Timeslot>("08:00");
-  const [visible, setVisible] = useState<boolean>(false);
+  const [timeslot, setTimeslot] = useState<string>(value);
+
   const items = Timeslots.map((item) => {
     return { label: item, value: item };
   });
@@ -17,47 +22,46 @@ const InputTimeslot = ({ label, value }: InputDateTimeProps) => {
   /**
    * HELPER FUNCTIONS
    */
-  const toggleTimeslotPicker = (status: boolean) => {
-    setVisible(status);
+  const handleDropdownChange = (item: { label: string; value: string }) => {
+    setTimeslot(item.value);
+    onTimeslotChange(item.value);
   };
 
   /**
    * RENDER FUNCTIONS
    */
+  const renderLabel = () => {
+    if (label) {
+      return <Text variant="bodySmall">{label}</Text>;
+    }
+    return null;
+  };
+
   return (
-    <>
-      <View style={styles.displayContainer}>
-        <Pressable
-          style={({ pressed }) =>
-            pressed
-              ? [styles.pressableContainer, styles.pressed]
-              : styles.pressableContainer
-          }
-          onPress={() => toggleTimeslotPicker(true)}
-        >
-          <DisplayDateTime value={timeslot} label={label} />
-        </Pressable>
-      </View>
-    </>
+    <View style={styles.displayContainer}>
+      {renderLabel()}
+      <Dropdown
+        data={items}
+        labelField={"label"}
+        valueField={"value"}
+        onChange={handleDropdownChange}
+        value={timeslot}
+      />
+      <Divider bold />
+    </View>
   );
 };
 
 type InputDateTimeProps = {
-  value: Timeslot;
+  value: string;
   label: string;
+  onTimeslotChange: (value: string) => void;
 };
 
 const styles = StyleSheet.create({
   displayContainer: {
-    borderRadius: 20,
-    margin: 4,
-    overflow: "hidden",
-  },
-  pressableContainer: {
-    paddingVertical: 8,
-  },
-  pressed: {
-    opacity: 0.5,
+    paddingLeft: 4,
+    marginBottom: 32,
   },
 });
 
