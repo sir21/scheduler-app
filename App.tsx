@@ -9,7 +9,7 @@ import React, { useEffect } from "react";
 import { Linking, StatusBar, useColorScheme } from "react-native";
 import Home from "./src/screens/home/Home";
 import { MD3LightTheme, Provider } from "react-native-paper";
-import Colors from "./src/constants/Colors";
+import Colors from "./src/util/constants/colors";
 // import { Camera } from "react-native-vision-camera";
 
 function App(): JSX.Element {

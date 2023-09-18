@@ -1,11 +1,18 @@
-import { Modal, StyleSheet, Text, View } from "react-native";
-import Colors from "../../../constants/Colors";
+import { FlatList, Modal, StyleSheet, Text, View } from "react-native";
+import Colors from "../../../util/constants/colors";
 import SortButton from "../../atoms/sortButton/SortButton";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Sort from "../../molecules/sort/Sort";
-import { SortOptionsType } from "../../../common/types";
+import { SortOptionsType } from "../../../util/common/sortOptionType";
+import { RoomAvailability } from "../../../util/common";
+import { RoomAvailabilityForTimeslot } from "../../../util/common/roomAvailabilityForTimeslot";
+import RoomCard from "../../atoms/roomCard/RoomCard";
 
-const RoomList = () => {
+const RoomList = ({
+  availabilities,
+  selectedDate,
+  timeslot,
+}: RoomListProps) => {
   /**
    * CONST
    */
@@ -15,6 +22,7 @@ const RoomList = () => {
     capacity: false,
     availability: false,
   });
+  const [roomList, setRoomList] = useState<RoomAvailabilityForTimeslot[]>([]);
 
   /**
    * HELPER FUNCTIONS
@@ -37,6 +45,12 @@ const RoomList = () => {
     setChecked({ location: false, capacity: false, availability: false });
   };
 
+  const handleRoomAvailability = () => {};
+
+  useEffect(() => {
+    handleRoomAvailability();
+  }, [availabilities, selectedDate, timeslot, checked]);
+
   /**
    * RENDER FUNCTIONS
    */
@@ -51,7 +65,21 @@ const RoomList = () => {
             <SortButton onPress={handleSortPress} />
           </View>
         </View>
-        <View style={styles.listContainer}></View>
+        <View style={styles.listContainer}>
+          <FlatList
+            data={roomList}
+            renderItem={({ item }) => {
+              return (
+                <RoomCard
+                  name={item.name}
+                  capacity={item.capacity}
+                  status={item.status}
+                  level={item.level}
+                />
+              );
+            }}
+          />
+        </View>
       </View>
       <Modal
         animationType="slide"
@@ -71,6 +99,12 @@ const RoomList = () => {
       </Modal>
     </>
   );
+};
+
+type RoomListProps = {
+  availabilities: RoomAvailability[];
+  selectedDate: Date;
+  timeslot: string;
 };
 
 const styles = StyleSheet.create({

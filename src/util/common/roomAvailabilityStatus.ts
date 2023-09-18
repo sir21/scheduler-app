@@ -1,0 +1,1 @@
+export type RoomAvailableStatus = "Available" | "Not Available";

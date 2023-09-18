@@ -1,10 +1,11 @@
 import { StyleSheet, View } from "react-native";
 import FilterSection from "../../components/organisms/filterSection/FilterSection";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import AppBar from "../../components/atoms/appBar/AppBar";
-import Colors from "../../constants/Colors";
+import Colors from "../../util/constants/colors";
 import RoomList from "../../components/organisms/roomList/RoomList";
-import QrScanner from "../../components/organisms/qrScanner/QrScanner";
+import { getAvailability } from "../../util/requests/requests";
+import { RoomAvailability } from "../../util/common";
 
 const Home = () => {
   /**
@@ -13,6 +14,7 @@ const Home = () => {
   const [selectedDate, setSelectedDate] = useState(new Date());
   const [selectedTimeslot, setSelectedTimeslot] = useState(new Date());
   const [showCamera, setShowCamera] = useState(false);
+  const [availabilities, setAvailabilities] = useState<RoomAvailability[]>([]);
 
   /**
    * HELPER FUNCTIONS
@@ -29,6 +31,15 @@ const Home = () => {
     console.log("show camera");
     setShowCamera(true);
   };
+
+  const getAvailableData = async () => {
+    const data = await getAvailability();
+    setAvailabilities(data);
+  };
+
+  useEffect(() => {
+    getAvailableData();
+  }, []);
 
   /**
    * RENDER FUNCTIONS
@@ -51,7 +62,7 @@ const Home = () => {
               onTimeChange={handleTimeChange}
             />
             {/*  Room availability*/}
-            <RoomList />
+            <RoomList availabilities={availabilities} />
           </View>
         </View>
       )}

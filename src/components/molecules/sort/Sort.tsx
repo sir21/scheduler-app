@@ -2,7 +2,7 @@ import { StyleSheet, View } from "react-native";
 import { Text } from "react-native-paper";
 import RadioButtonWithLabel from "../../atoms/radioButton/RadioButtonWithLabel";
 import { useState } from "react";
-import { SortOptionsType } from "../../../common/types";
+import { SortOptionsType } from "../../../util/common/sortOptionType";
 import DefaultButton from "../../atoms/defaultButton/DefaultButton";
 
 const Sort = ({ sorts, onApply, onReset }: SortProps) => {
