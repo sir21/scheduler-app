@@ -2,7 +2,7 @@ import { StyleSheet, View } from "react-native";
 import FilterSection from "../../components/organisms/filterSection/FilterSection";
 import { useState } from "react";
 import AppBar from "../../components/atoms/appBar/AppBar";
-import Colors from "../../constants/colors";
+import Colors from "../../constants/Colors";
 import RoomList from "../../components/organisms/roomList/RoomList";
 
 const Home = () => {

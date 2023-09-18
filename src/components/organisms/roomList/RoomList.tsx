@@ -1,17 +1,20 @@
 import { Modal, StyleSheet, Text, View } from "react-native";
-import Colors from "../../../constants/colors";
+import Colors from "../../../constants/Colors";
 import SortButton from "../../atoms/sortButton/SortButton";
 import { useState } from "react";
 import Sort from "../../molecules/sort/Sort";
+import { FilterOptionsType } from "../../../common/types";
 
 const RoomList = () => {
   /**
    * CONST
    */
   const [showModal, setShowModal] = useState(false);
-  const [location, setLocation] = useState(false);
-  const [capacity, setCapacity] = useState(false);
-  const [availability, setAvailability] = useState(false);
+  const [checked, setChecked] = useState<FilterOptionsType>({
+    location: false,
+    capacity: false,
+    availability: false,
+  });
 
   /**
    * HELPER FUNCTIONS
@@ -22,6 +25,16 @@ const RoomList = () => {
 
   const handleSortModalClose = () => {
     setShowModal(false);
+  };
+
+  const handleApplyFilter = (filter: FilterOptionsType) => {
+    handleSortModalClose();
+    setChecked(filter);
+  };
+
+  const handleResetFilter = () => {
+    handleSortModalClose();
+    setChecked({ location: false, capacity: false, availability: false });
   };
 
   /**
@@ -49,9 +62,9 @@ const RoomList = () => {
         <View style={styles.modalContainer}>
           <View style={styles.modalView}>
             <Sort
-              location={location}
-              capacity={capacity}
-              availability={availability}
+              filters={checked}
+              onApply={handleApplyFilter}
+              onReset={handleResetFilter}
             />
           </View>
         </View>
@@ -86,7 +99,8 @@ const styles = StyleSheet.create({
     width: "100%",
     backgroundColor: Colors.background,
     borderRadius: 20,
-    padding: 35,
+    paddingHorizontal: 35,
+    paddingVertical: 10,
     alignItems: "center",
     shadowColor: Colors.shadowColor,
     shadowOffset: {

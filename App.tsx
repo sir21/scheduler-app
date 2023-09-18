@@ -9,7 +9,7 @@ import React from "react";
 import { StatusBar, useColorScheme } from "react-native";
 import Home from "./src/screens/home/Home";
 import { MD3LightTheme, Provider } from "react-native-paper";
-import Colors from "./src/constants/colors";
+import Colors from "./src/constants/Colors";
 
 function App(): JSX.Element {
   const colorScheme = useColorScheme();
