@@ -2,14 +2,14 @@ import { StyleSheet, View } from "react-native";
 import { Text } from "react-native-paper";
 import RadioButtonWithLabel from "../../atoms/radioButton/RadioButtonWithLabel";
 import { useState } from "react";
-import { FilterOptionsType } from "../../../common/types";
+import { SortOptionsType } from "../../../common/types";
 import DefaultButton from "../../atoms/defaultButton/DefaultButton";
 
-const Sort = ({ filters, onApply, onReset }: SortProps) => {
+const Sort = ({ sorts, onApply, onReset }: SortProps) => {
   /**
    * CONSTANTS
    */
-  const [checked, setChecked] = useState<FilterOptionsType>(filters);
+  const [checked, setChecked] = useState<SortOptionsType>(sorts);
 
   /**
    * HELPER FUNCTIONS
@@ -37,7 +37,7 @@ const Sort = ({ filters, onApply, onReset }: SortProps) => {
     if (onReset) {
       onReset();
     }
-  }
+  };
 
   /**
    * RENDER FUNCTIONS
@@ -112,8 +112,8 @@ const styles = StyleSheet.create({
 });
 
 type SortProps = {
-  filters: FilterOptionsType;
-  onApply?: (filters: FilterOptionsType) => void;
+  sorts: SortOptionsType;
+  onApply?: (sorts: SortOptionsType) => void;
   onReset?: () => void;
 };
 

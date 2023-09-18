@@ -3,14 +3,14 @@ import Colors from "../../../constants/Colors";
 import SortButton from "../../atoms/sortButton/SortButton";
 import { useState } from "react";
 import Sort from "../../molecules/sort/Sort";
-import { FilterOptionsType } from "../../../common/types";
+import { SortOptionsType } from "../../../common/types";
 
 const RoomList = () => {
   /**
    * CONST
    */
   const [showModal, setShowModal] = useState(false);
-  const [checked, setChecked] = useState<FilterOptionsType>({
+  const [checked, setChecked] = useState<SortOptionsType>({
     location: false,
     capacity: false,
     availability: false,
@@ -27,12 +27,12 @@ const RoomList = () => {
     setShowModal(false);
   };
 
-  const handleApplyFilter = (filter: FilterOptionsType) => {
+  const handleApplySort = (sorts: SortOptionsType) => {
     handleSortModalClose();
-    setChecked(filter);
+    setChecked(sorts);
   };
 
-  const handleResetFilter = () => {
+  const handleResetSort = () => {
     handleSortModalClose();
     setChecked({ location: false, capacity: false, availability: false });
   };
@@ -62,9 +62,9 @@ const RoomList = () => {
         <View style={styles.modalContainer}>
           <View style={styles.modalView}>
             <Sort
-              filters={checked}
-              onApply={handleApplyFilter}
-              onReset={handleResetFilter}
+              sorts={checked}
+              onApply={handleApplySort}
+              onReset={handleResetSort}
             />
           </View>
         </View>
