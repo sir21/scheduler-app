@@ -5,8 +5,13 @@
  * @format
  */
 
-import React, { useEffect } from "react";
-import { Linking, StatusBar, useColorScheme } from "react-native";
+import React from "react";
+import {
+  SafeAreaView,
+  StatusBar,
+  StyleSheet,
+  useColorScheme,
+} from "react-native";
 import Home from "./src/screens/home/Home";
 import { MD3LightTheme, Provider } from "react-native-paper";
 import Colors from "./src/util/constants/colors";
@@ -39,10 +44,18 @@ function App(): JSX.Element {
 
   return (
     <Provider theme={theme}>
-      <StatusBar barStyle={"default"} />
-      <Home />
+      <SafeAreaView style={styles.safeAreaStyles}>
+        <StatusBar barStyle={"default"} />
+        <Home />
+      </SafeAreaView>
     </Provider>
   );
 }
+
+const styles = StyleSheet.create({
+  safeAreaStyles: {
+    flex: 1,
+  },
+});
 
 export default App;

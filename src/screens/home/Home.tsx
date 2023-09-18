@@ -5,14 +5,14 @@ import AppBar from "../../components/atoms/appBar/AppBar";
 import Colors from "../../util/constants/colors";
 import RoomList from "../../components/organisms/roomList/RoomList";
 import { getAvailability } from "../../util/requests/requests";
-import { RoomAvailability } from "../../util/common";
+import { RoomAvailability, Timeslot } from "../../util/common";
 
 const Home = () => {
   /**
    * CONSTANTS, STATES
    */
-  const [selectedDate, setSelectedDate] = useState(new Date());
-  const [selectedTimeslot, setSelectedTimeslot] = useState(new Date());
+  const [selectedDate, setSelectedDate] = useState<Date>(new Date());
+  const [selectedTimeslot, setSelectedTimeslot] = useState<Timeslot>("08:00");
   const [showCamera, setShowCamera] = useState(false);
   const [availabilities, setAvailabilities] = useState<RoomAvailability[]>([]);
 
@@ -23,8 +23,8 @@ const Home = () => {
     setSelectedDate(date);
   };
 
-  const handleTimeChange = (date: Date) => {
-    setSelectedTimeslot(date);
+  const handleTimeChange = (timeslot: Timeslot) => {
+    setSelectedTimeslot(timeslot);
   };
 
   const handleCameraClick = () => {
@@ -62,7 +62,11 @@ const Home = () => {
               onTimeChange={handleTimeChange}
             />
             {/*  Room availability*/}
-            <RoomList availabilities={availabilities} />
+            <RoomList
+              availabilities={availabilities}
+              selectedDate={selectedDate}
+              timeslot={selectedTimeslot}
+            />
           </View>
         </View>
       )}

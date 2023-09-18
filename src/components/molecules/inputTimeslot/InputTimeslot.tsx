@@ -1,24 +1,24 @@
 import { Pressable, StyleSheet, View } from "react-native";
 import DisplayDateTime from "../../atoms/displayDateTime/DisplayDateTime";
 import { useState } from "react";
+import { Timeslot } from "../../../util/common";
+import { Timeslots } from "../../../util/constants/timeslots";
 
 const InputTimeslot = ({ label, value }: InputDateTimeProps) => {
   /**
    * CONSTANTS
    */
-  const [date, setDate] = useState<Date>(value);
+  const [timeslot, setTimeslot] = useState<Timeslot>("08:00");
   const [visible, setVisible] = useState<boolean>(false);
+  const items = Timeslots.map((item) => {
+    return { label: item, value: item };
+  });
 
   /**
    * HELPER FUNCTIONS
    */
-  const toggleDatePicker = (status: boolean) => {
+  const toggleTimeslotPicker = (status: boolean) => {
     setVisible(status);
-  };
-
-  const handleOnConfirm = (newDate: Date) => {
-    setDate(newDate);
-    toggleDatePicker(false);
   };
 
   /**
@@ -33,18 +33,17 @@ const InputTimeslot = ({ label, value }: InputDateTimeProps) => {
               ? [styles.pressableContainer, styles.pressed]
               : styles.pressableContainer
           }
-          onPress={() => toggleDatePicker(true)}
+          onPress={() => toggleTimeslotPicker(true)}
         >
-          <DisplayDateTime value={date.toDateString()} label={label} />
+          <DisplayDateTime value={timeslot} label={label} />
         </Pressable>
       </View>
-      
     </>
   );
 };
 
 type InputDateTimeProps = {
-  value: Date;
+  value: Timeslot;
   label: string;
 };
 
