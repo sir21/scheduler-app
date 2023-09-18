@@ -4,14 +4,14 @@ import SortButton from "../../atoms/sortButton/SortButton";
 import { useEffect, useState } from "react";
 import Sort from "../../molecules/sort/Sort";
 import { SortOptionsType } from "../../../util/common/sortOptionType";
-import { RoomAvailability } from "../../../util/common";
+import { RoomAvailability, Timeslot } from "../../../util/common";
 import { RoomAvailabilityForTimeslot } from "../../../util/common/roomAvailabilityForTimeslot";
 import RoomCard from "../../atoms/roomCard/RoomCard";
 
 const RoomList = ({
   availabilities,
   selectedDate,
-  timeslot,
+  selectedTimeslot,
 }: RoomListProps) => {
   /**
    * CONST
@@ -45,11 +45,26 @@ const RoomList = ({
     setChecked({ location: false, capacity: false, availability: false });
   };
 
-  const handleRoomAvailability = () => {};
+  const handleRoomAvailability = () => {
+    if (!availabilities) {
+      setRoomList([]);
+    }
+    const time: Timeslot = selectedTimeslot.split(" ")[0] as Timeslot;
+    const rooms: RoomAvailabilityForTimeslot[] = availabilities.map((item) => {
+      return {
+        name: item.name,
+        level: item.level,
+        capacity: +item.capacity,
+        status: item.availability[time] === "1" ? "Available" : "Not Available",
+      };
+    });
+
+    setRoomList(rooms);
+  };
 
   useEffect(() => {
     handleRoomAvailability();
-  }, [availabilities, selectedDate, timeslot, checked]);
+  }, [availabilities, selectedDate, selectedTimeslot, checked]);
 
   /**
    * RENDER FUNCTIONS
@@ -68,6 +83,7 @@ const RoomList = ({
         <View style={styles.listContainer}>
           <FlatList
             data={roomList}
+            contentContainerStyle={{ flexGrow: 1 }}
             renderItem={({ item }) => {
               return (
                 <RoomCard
@@ -81,22 +97,24 @@ const RoomList = ({
           />
         </View>
       </View>
-      <Modal
-        animationType="slide"
-        visible={showModal}
-        onDismiss={handleSortModalClose}
-        transparent={true}
-      >
-        <View style={styles.modalContainer}>
-          <View style={styles.modalView}>
-            <Sort
-              sorts={checked}
-              onApply={handleApplySort}
-              onReset={handleResetSort}
-            />
+      {showModal && (
+        <Modal
+          animationType="slide"
+          visible={showModal}
+          onDismiss={handleSortModalClose}
+          transparent={true}
+        >
+          <View style={styles.modalContainer}>
+            <View style={styles.modalView}>
+              <Sort
+                sorts={checked}
+                onApply={handleApplySort}
+                onReset={handleResetSort}
+              />
+            </View>
           </View>
-        </View>
-      </Modal>
+        </Modal>
+      )}
     </>
   );
 };
@@ -104,7 +122,7 @@ const RoomList = ({
 type RoomListProps = {
   availabilities: RoomAvailability[];
   selectedDate: Date;
-  timeslot: string;
+  selectedTimeslot: string;
 };
 
 const styles = StyleSheet.create({
@@ -115,9 +133,9 @@ const styles = StyleSheet.create({
   },
   headerContainer: {
     flexDirection: "row",
-    flex: 1,
     height: 20,
     justifyContent: "space-between",
+    marginBottom: 4,
   },
   listContainer: {
     flex: 1,

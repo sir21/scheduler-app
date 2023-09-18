@@ -28,7 +28,6 @@ const Home = () => {
   };
 
   const handleCameraClick = () => {
-    console.log("show camera");
     setShowCamera(true);
   };
 
@@ -65,7 +64,7 @@ const Home = () => {
             <RoomList
               availabilities={availabilities}
               selectedDate={selectedDate}
-              timeslot={selectedTimeslot}
+              selectedTimeslot={selectedTimeslot}
             />
           </View>
         </View>

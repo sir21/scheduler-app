@@ -1,29 +1,66 @@
-import { View } from "react-native";
+import { StyleSheet, View } from "react-native";
 import { Text } from "react-native-paper";
 import { RoomAvailableStatus } from "../../../util/common";
+import Colors from "../../../util/constants/colors";
 
 const RoomCard = ({ name, status, level, capacity }: RoomCardProps) => {
   return (
-    <View>
-      <View>
+    <View style={styles.cardContainer}>
+      <View style={styles.rowContainer}>
         <View>
-          <Text>{name}</Text>
+          <Text variant="titleMedium">{name}</Text>
         </View>
         <View>
-          <Text>{status}</Text>
+          <Text
+            variant="bodyMedium"
+            style={[
+              styles.statusText,
+              status === "Available"
+                ? styles.statusAvailable
+                : styles.statusNotAvailable,
+            ]}
+          >
+            {status}
+          </Text>
         </View>
       </View>
-      <View>
+      <View style={styles.rowContainer}>
         <View>
-          <Text>{`Level ${level}`}</Text>
+          <Text variant="bodyMedium">{`Level ${level}`}</Text>
         </View>
         <View>
-          <Text>{`${capacity} Pax`}</Text>
+          <Text variant="bodyMedium">{`${capacity} Pax`}</Text>
         </View>
       </View>
     </View>
   );
 };
+
+const styles = StyleSheet.create({
+  cardContainer: {
+    flex: 1,
+    height: 72,
+    marginBottom: 8,
+    paddingHorizontal: 16,
+    paddingVertical: 8,
+    borderRadius: 4,
+    backgroundColor: Colors.lightBackground,
+  },
+  rowContainer: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    paddingVertical: 2,
+  },
+  statusText: {
+    fontStyle: "italic",
+  },
+  statusAvailable: {
+    color: Colors.successColor,
+  },
+  statusNotAvailable: {
+    color: Colors.secondary,
+  },
+});
 
 type RoomCardProps = {
   name: string;

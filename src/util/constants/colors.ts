@@ -6,7 +6,9 @@ const Colors = {
   background: "#FFFFFF",
   surfaceVariant: "#FFFFFF",
   shadowColor: "#000000",
-  lightColor: "#FFFFFF"
+  lightColor: "#FFFFFF",
+  lightBackground: "#EEEEEE",
+  successColor: "#32CD32"
 };
 
 export default Colors;
