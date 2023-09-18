@@ -1,4 +1,3 @@
-export * from "./availabilityWithTime";
 export * from "./roomAvailability";
 export * from "./roomAvailabilityStatus";
 export * from "./sortOptionType";

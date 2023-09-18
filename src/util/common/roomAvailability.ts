@@ -1,7 +1,5 @@
-import { AvailabilityWithTime } from "./availabilityWithTime";
-
 export interface RoomAvailability {
-  availability: [AvailabilityWithTime];
+  availability: { [key: string]: "0" | "1" }[];
   capacity: string;
   level: string;
   name: string;
