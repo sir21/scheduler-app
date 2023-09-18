@@ -4,6 +4,7 @@ import { useState } from "react";
 import AppBar from "../../components/atoms/appBar/AppBar";
 import Colors from "../../constants/Colors";
 import RoomList from "../../components/organisms/roomList/RoomList";
+import QrScanner from "../../components/organisms/qrScanner/QrScanner";
 
 const Home = () => {
   /**
@@ -11,6 +12,7 @@ const Home = () => {
    */
   const [selectedDate, setSelectedDate] = useState(new Date());
   const [selectedTimeslot, setSelectedTimeslot] = useState(new Date());
+  const [showCamera, setShowCamera] = useState(false);
 
   /**
    * HELPER FUNCTIONS
@@ -24,27 +26,36 @@ const Home = () => {
   };
 
   const handleCameraClick = () => {
-    console.log("camera click");
+    console.log("show camera");
+    setShowCamera(true);
   };
 
   /**
    * RENDER FUNCTIONS
    */
   return (
-    <View style={styles.outerContainer}>
-      <AppBar title="Book a Room" onCameraButtonClick={handleCameraClick} />
-      <View style={styles.innerContainer}>
-        {/* Filter section */}
-        <FilterSection
-          date={selectedDate}
-          timeslot={selectedTimeslot}
-          onDateChange={handleDateChange}
-          onTimeChange={handleTimeChange}
-        />
-        {/*  Room availability*/}
-        <RoomList />
-      </View>
-    </View>
+    <>
+      {showCamera ? (
+        <View style={styles.outerContainer}>
+          {/* <QrScanner showCamera={showCamera} /> */}
+        </View>
+      ) : (
+        <View style={styles.outerContainer}>
+          <AppBar title="Book a Room" onCameraButtonClick={handleCameraClick} />
+          <View style={styles.innerContainer}>
+            {/* Filter section */}
+            <FilterSection
+              date={selectedDate}
+              timeslot={selectedTimeslot}
+              onDateChange={handleDateChange}
+              onTimeChange={handleTimeChange}
+            />
+            {/*  Room availability*/}
+            <RoomList />
+          </View>
+        </View>
+      )}
+    </>
   );
 };
 
@@ -63,7 +74,6 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
     width: "100%",
   },
-
 });
 
 export default Home;
