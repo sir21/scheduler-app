@@ -1,20 +1,16 @@
 import { StyleSheet, View } from "react-native";
-import DisplayDateTime from "../../atoms/displayDateTime/DisplayDateTime";
-import { useState } from "react";
-import InputDateTime from "../../molecules/inputDateTime/InputDateTime";
+import InputDate from "../../molecules/inputDate/InputDate";
 
 const FilterSection = ({date, timeslot, onDateChange, onTimeChange}: FilterSectionProps) => {
   return (
     <View style={styles.inputContainer}>
-      <InputDateTime
+      <InputDate
         label="Date"
         value={date}
-        mode={"date"}
       />
-      <InputDateTime
+      <InputDate
         label="Timeslot"
         value={timeslot}
-        mode={"time"}
       />
     </View>
   );

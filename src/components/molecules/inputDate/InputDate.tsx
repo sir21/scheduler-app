@@ -1,8 +1,9 @@
 import { Pressable, StyleSheet, View } from "react-native";
 import DisplayDateTime from "../../atoms/displayDateTime/DisplayDateTime";
 import { useState } from "react";
+import DatePicker from "react-native-date-picker";
 
-const InputDateTime = ({ label, mode, value }: InputDateTimeProps) => {
+const InputDate = ({ label, value }: InputDateProps) => {
   /**
    * CONSTANTS
    */
@@ -12,15 +13,14 @@ const InputDateTime = ({ label, mode, value }: InputDateTimeProps) => {
   /**
    * HELPER FUNCTIONS
    */
-  const handleOnPress = () => {
-    setVisible(true);
+  const toggleDatePicker = (status: boolean) => {
+    setVisible(status);
   };
 
-  // const handleOnChange = (e: DateTimePickerEvent, date?: Date) => {
-  //   console.log(e.type, date);
-  //   setVisible(false);
-  //   setValue(date);
-  // };
+  const handleOnConfirm = (newDate: Date) => {
+    setDate(newDate);
+    toggleDatePicker(false);
+  };
 
   /**
    * RENDER FUNCTIONS
@@ -34,24 +34,24 @@ const InputDateTime = ({ label, mode, value }: InputDateTimeProps) => {
               ? [styles.pressableContainer, styles.pressed]
               : styles.pressableContainer
           }
-          onPress={handleOnPress}
+          onPress={() => toggleDatePicker(true)}
         >
-          <DisplayDateTime
-            value={
-              mode === "date" ? value.toDateString() : value.toTimeString()
-            }
-            label={label}
-          />
+          <DisplayDateTime value={date.toDateString()} label={label} />
         </Pressable>
       </View>
-      {/** Modal will come here */}
+      <DatePicker
+        modal
+        open={visible}
+        date={date}
+        onConfirm={handleOnConfirm}
+        onCancel={() => toggleDatePicker(false)}
+      />
     </>
   );
 };
 
-type InputDateTimeProps = {
+type InputDateProps = {
   value: Date;
-  mode: "time" | "date";
   label: string;
 };
 
@@ -69,4 +69,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default InputDateTime;
+export default InputDate;
