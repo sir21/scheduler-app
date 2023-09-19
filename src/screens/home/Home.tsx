@@ -37,6 +37,10 @@ const Home = () => {
     setAvailabilities(data);
   };
 
+  const handleCameraBackPress = () => {
+    setShowCamera(false);
+  }
+
   useEffect(() => {
     getAvailableData();
   }, []);
@@ -48,7 +52,7 @@ const Home = () => {
     <>
       {showCamera ? (
         <View style={styles.outerContainer}>
-          <QrScanner showCamera={showCamera} />
+          <QrScanner onBackPress={handleCameraBackPress} />
         </View>
       ) : (
         <View style={styles.outerContainer}>

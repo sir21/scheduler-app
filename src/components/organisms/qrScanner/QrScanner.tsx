@@ -5,25 +5,21 @@ import {
   useFrameProcessor,
 } from "react-native-vision-camera";
 import { Text } from "react-native-paper";
-import { StyleSheet } from "react-native";
+import { BackHandler, StyleSheet } from "react-native";
 import {
   Barcode,
   BarcodeFormat,
   scanBarcodes,
-  useScanBarcodes,
 } from "vision-camera-code-scanner";
 import { runOnJS } from "react-native-reanimated";
 
-const QrScanner = ({ showCamera }: QrScannerProps) => {
+const QrScanner = ({ onBackPress }: QrScannerProps) => {
   const camera = useRef(null);
   const devices = useCameraDevices();
   const device = devices.back;
   const [hasPermission, setHasPermission] = useState(false);
   const [barcodes, setBarcodes] = useState<Barcode[]>([]);
-
-  // const [frameProcessor, barcodes] = useScanBarcodes([BarcodeFormat.QR_CODE], {
-  //   checkInverted: true,
-  // });
+  const [hideCamera, setHideCamera] = useState(false);
 
   const frameProcessor = useFrameProcessor((frame) => {
     "worklet";
@@ -36,11 +32,31 @@ const QrScanner = ({ showCamera }: QrScannerProps) => {
   }, []);
 
   useEffect(() => {
+    if (hideCamera) {
+      onBackPress();
+    }
+  },[hideCamera])
+
+  useEffect(() => {
     (async () => {
       const status = await Camera.requestCameraPermission();
       console.log(status);
       setHasPermission(status === "authorized");
     })();
+  }, []);
+
+  useEffect(() => {
+    const backAction = () => {
+      setHideCamera(true);
+      return true;
+    };
+
+    const backHandler = BackHandler.addEventListener(
+      "hardwareBackPress",
+      backAction
+    );
+
+    return () => backHandler.remove();
   }, []);
 
   if (device == null) {
@@ -82,7 +98,7 @@ const styles = StyleSheet.create({
 });
 
 type QrScannerProps = {
-  showCamera: boolean;
+  onBackPress: () => void;
 };
 
 export default QrScanner;
