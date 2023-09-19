@@ -74,6 +74,6 @@
 		<string>Zocial.ttf</string>
 	</array>
 	<key>NSCameraUsageDescription</key>
-		<string>$(PRODUCT_NAME) needs access to your Camera.</string>
+		<string>For barcode scanning</string>
 </dict>
 </plist>
