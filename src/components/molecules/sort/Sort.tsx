@@ -50,21 +50,27 @@ const Sort = ({ sorts, onApply, onReset }: SortProps) => {
         </Text>
       </View>
       <View>
-        <RadioButtonWithLabel
-          label="Location"
-          checked={checked.location}
-          onPress={handleRadioButtonPress}
-        />
-        <RadioButtonWithLabel
-          label="Capacity"
-          checked={checked.capacity}
-          onPress={handleRadioButtonPress}
-        />
-        <RadioButtonWithLabel
-          label="Availability"
-          checked={checked.availability}
-          onPress={handleRadioButtonPress}
-        />
+        <View style={styles.radioButtonContainer}>
+          <RadioButtonWithLabel
+            label="Location"
+            checked={checked.location}
+            onPress={handleRadioButtonPress}
+          />
+        </View>
+        <View style={styles.radioButtonContainer}>
+          <RadioButtonWithLabel
+            label="Capacity"
+            checked={checked.capacity}
+            onPress={handleRadioButtonPress}
+          />
+        </View>
+        <View style={styles.radioButtonContainer}>
+          <RadioButtonWithLabel
+            label="Availability"
+            checked={checked.availability}
+            onPress={handleRadioButtonPress}
+          />
+        </View>
       </View>
       <View style={styles.actionContainer}>
         <View style={styles.actionButtons}>
@@ -90,13 +96,18 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     width: "100%",
+    paddingBottom: 16 ,
   },
   titleContainer: {
     textAlign: "center",
+    marginBottom: 8,
   },
   actionContainer: {
     flex: 1,
     justifyContent: "flex-end",
+  },
+  radioButtonContainer: {
+    marginVertical: 12,
   },
   actionButtons: {
     flexDirection: "row",

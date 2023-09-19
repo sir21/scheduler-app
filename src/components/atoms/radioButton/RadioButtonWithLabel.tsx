@@ -6,6 +6,7 @@ import {
 } from "react-native";
 import { Text } from "react-native-paper";
 import Icon from "react-native-vector-icons/MaterialIcons";
+import Colors from "../../../util/constants/colors";
 
 const RadioButtonWithLabel = ({
   label,
@@ -31,9 +32,9 @@ const RadioButtonWithLabel = ({
       <View>
         <Pressable onPress={handleRadioButtonPress}>
           {checked ? (
-            <Icon name="radio-button-checked" size={26} />
+            <Icon name="radio-button-checked" size={26} color={Colors.secondary} />
           ) : (
-            <Icon name="radio-button-unchecked" size={26} />
+            <Icon name="radio-button-unchecked" size={26} color={Colors.secondary} />
           )}
         </Pressable>
       </View>

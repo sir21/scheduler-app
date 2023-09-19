@@ -4,6 +4,7 @@ import { Dropdown } from "react-native-element-dropdown";
 
 import { Timeslots } from "../../../util/constants/timeslots";
 import { Divider, Text } from "react-native-paper";
+import Colors from "../../../util/constants/colors";
 
 const InputTimeslot = ({
   label,
@@ -31,10 +32,11 @@ const InputTimeslot = ({
    * RENDER FUNCTIONS
    */
   const renderLabel = () => {
-    if (label) {
-      return <Text variant="bodySmall">{label}</Text>;
-    }
-    return null;
+    return (
+      <Text variant="bodySmall" style={styles.textStyles}>
+        {label}
+      </Text>
+    );
   };
 
   return (
@@ -45,6 +47,8 @@ const InputTimeslot = ({
         labelField={"label"}
         valueField={"value"}
         onChange={handleDropdownChange}
+        itemTextStyle={styles.textStyles}
+        selectedTextStyle={styles.textStyles}
         value={timeslot}
       />
       <Divider bold />
@@ -62,6 +66,9 @@ const styles = StyleSheet.create({
   displayContainer: {
     paddingLeft: 4,
     marginBottom: 32,
+  },
+  textStyles: {
+    color: Colors.secondary,
   },
 });
 

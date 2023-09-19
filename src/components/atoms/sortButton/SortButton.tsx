@@ -1,6 +1,7 @@
 import { Pressable, StyleSheet, View } from "react-native";
 import { Text } from "react-native-paper";
 import Icon from "react-native-vector-icons/MaterialIcons";
+import Colors from "../../../util/constants/colors";
 
 const SortButton = ({ onPress }: SortButtonProps) => {
   /**
@@ -19,7 +20,7 @@ const SortButton = ({ onPress }: SortButtonProps) => {
         <Text variant="labelMedium" style={styles.text}>
           Sort
         </Text>
-        <Icon name="sort" size={20} />
+        <Icon name="sort" size={20} color={Colors.secondary} />
       </Pressable>
     </View>
   );

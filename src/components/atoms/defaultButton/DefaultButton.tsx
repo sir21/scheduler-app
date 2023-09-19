@@ -17,7 +17,11 @@ const DefaultButton = ({
       ]}
     >
       <Pressable onPress={onPress}>
-        <Text variant="labelLarge" style={styles.buttonText}>{label}</Text>
+        <View style={styles.innerContainer}>
+          <Text variant="labelLarge" style={styles.buttonText}>
+            {label}
+          </Text>
+        </View>
       </Pressable>
     </View>
   );
@@ -32,14 +36,17 @@ const styles = StyleSheet.create({
   },
   commonButtonStyles: {
     marginHorizontal: 8,
-    height: 40,
+    height: 50,
     borderRadius: 16,
+  },
+  innerContainer: {
+    alignItems: "center",
     justifyContent: "center",
-    alignItems: "center"
+    height: "100%",
   },
   buttonText: {
     color: Colors.lightColor,
-  }
+  },
 });
 
 type DefaultButtonProps = {

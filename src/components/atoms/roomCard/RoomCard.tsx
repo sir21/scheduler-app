@@ -65,7 +65,7 @@ const styles = StyleSheet.create({
 type RoomCardProps = {
   name: string;
   status: RoomAvailableStatus;
-  level: string;
+  level: number;
   capacity: number;
 };
 
