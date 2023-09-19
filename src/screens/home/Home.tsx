@@ -6,6 +6,7 @@ import Colors from "../../util/constants/colors";
 import RoomList from "../../components/organisms/roomList/RoomList";
 import { getAvailability } from "../../util/requests/requests";
 import { RoomAvailability } from "../../util/common";
+import QrScanner from "../../components/organisms/qrScanner/QrScanner";
 
 const Home = () => {
   /**
@@ -47,7 +48,7 @@ const Home = () => {
     <>
       {showCamera ? (
         <View style={styles.outerContainer}>
-          {/* <QrScanner showCamera={showCamera} /> */}
+          <QrScanner showCamera={showCamera} />
         </View>
       ) : (
         <View style={styles.outerContainer}>

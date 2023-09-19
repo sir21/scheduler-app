@@ -2,7 +2,6 @@ PODS:
   - boost (1.76.0)
   - CocoaAsyncSocket (7.6.5)
   - DoubleConversion (1.1.6)
-  - DynamsoftBarcodeReader (9.4.0)
   - FBLazyVector (0.72.4)
   - FBReactNativeSpec (0.72.4):
     - RCT-Folly (= 2021.07.22.00)
@@ -490,8 +489,6 @@ PODS:
     - React-jsi (= 0.72.4)
     - React-logger (= 0.72.4)
     - React-perflogger (= 0.72.4)
-  - RNCClipboard (1.11.2):
-    - React-Core
   - RNReanimated (3.5.2):
     - DoubleConversion
     - FBLazyVector
@@ -529,9 +526,6 @@ PODS:
   - RNVectorIcons (10.0.0):
     - React-Core
   - SocketRocket (0.6.1)
-  - vision-camera-dynamsoft-barcode-reader (0.6.2):
-    - DynamsoftBarcodeReader (= 9.4.0)
-    - React-Core
   - VisionCamera (2.16.1):
     - React
     - React-callinvoker
@@ -605,19 +599,16 @@ DEPENDENCIES:
   - React-runtimescheduler (from `../node_modules/react-native/ReactCommon/react/renderer/runtimescheduler`)
   - React-utils (from `../node_modules/react-native/ReactCommon/react/utils`)
   - ReactCommon/turbomodule/core (from `../node_modules/react-native/ReactCommon`)
-  - "RNCClipboard (from `../node_modules/@react-native-clipboard/clipboard`)"
   - RNReanimated (from `../node_modules/react-native-reanimated`)
   - RNScreens (from `../node_modules/react-native-screens`)
   - RNSVG (from `../node_modules/react-native-svg`)
   - RNVectorIcons (from `../node_modules/react-native-vector-icons`)
-  - vision-camera-dynamsoft-barcode-reader (from `../node_modules/vision-camera-dynamsoft-barcode-reader`)
   - VisionCamera (from `../node_modules/react-native-vision-camera`)
   - Yoga (from `../node_modules/react-native/ReactCommon/yoga`)
 
 SPEC REPOS:
   trunk:
     - CocoaAsyncSocket
-    - DynamsoftBarcodeReader
     - Flipper
     - Flipper-Boost-iOSX
     - Flipper-DoubleConversion
@@ -714,8 +705,6 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native/ReactCommon/react/utils"
   ReactCommon:
     :path: "../node_modules/react-native/ReactCommon"
-  RNCClipboard:
-    :path: "../node_modules/@react-native-clipboard/clipboard"
   RNReanimated:
     :path: "../node_modules/react-native-reanimated"
   RNScreens:
@@ -724,8 +713,6 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native-svg"
   RNVectorIcons:
     :path: "../node_modules/react-native-vector-icons"
-  vision-camera-dynamsoft-barcode-reader:
-    :path: "../node_modules/vision-camera-dynamsoft-barcode-reader"
   VisionCamera:
     :path: "../node_modules/react-native-vision-camera"
   Yoga:
@@ -735,7 +722,6 @@ SPEC CHECKSUMS:
   boost: 57d2868c099736d80fcd648bf211b4431e51a558
   CocoaAsyncSocket: 065fd1e645c7abab64f7a6a2007a48038fdc6a99
   DoubleConversion: 5189b271737e1565bdce30deb4a08d647e3f5f54
-  DynamsoftBarcodeReader: f15749834dd2b6f998e6423124082f3b2f8622ca
   FBLazyVector: 5d4a3b7f411219a45a6d952f77d2c0a6c9989da5
   FBReactNativeSpec: 3fc2d478e1c4b08276f9dd9128f80ec6d5d85c1f
   Flipper: 6edb735e6c3e332975d1b17956bcc584eccf5818
@@ -785,13 +771,11 @@ SPEC CHECKSUMS:
   React-runtimescheduler: 4941cc1b3cf08b792fbf666342c9fc95f1969035
   React-utils: b79f2411931f9d3ea5781404dcbb2fa8a837e13a
   ReactCommon: 4b2bdcb50a3543e1c2b2849ad44533686610826d
-  RNCClipboard: 3f0451a8100393908bea5c5c5b16f96d45f30bfc
   RNReanimated: 2491645f0883526f4470d8b5c761308709ba31f8
   RNScreens: 85d3880b52d34db7b8eeebe2f1a0e807c05e69fa
   RNSVG: ed492aaf3af9ca01bc945f7a149d76d62e73ec82
   RNVectorIcons: 8b5bb0fa61d54cd2020af4f24a51841ce365c7e9
   SocketRocket: f32cd54efbe0f095c4d7594881e52619cfe80b17
-  vision-camera-dynamsoft-barcode-reader: a6dc22aff1872c4c2a73adf3a1e8b26d92617702
   VisionCamera: b5aaa1d533a1063289eb71ad70bcbb50a57f2e0d
   Yoga: 3efc43e0d48686ce2e8c60f99d4e6bd349aff981
   YogaKit: f782866e155069a2cca2517aafea43200b01fd5a

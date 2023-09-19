@@ -10,8 +10,6 @@
     "test": "jest"
   },
   "dependencies": {
-    "@alessiocancian/react-native-actionsheet": "^3.2.0",
-    "@react-native-clipboard/clipboard": "^1.11.2",
     "axios": "^1.5.0",
     "react": "18.2.0",
     "react-native": "0.72.4",
@@ -24,7 +22,7 @@
     "react-native-svg": "^13.13.0",
     "react-native-vector-icons": "^10.0.0",
     "react-native-vision-camera": "^2.16.1",
-    "vision-camera-dynamsoft-barcode-reader": "^0.6.2"
+    "vision-camera-code-scanner": "^0.2.0"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0",
