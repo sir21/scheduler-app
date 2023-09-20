@@ -10,7 +10,6 @@ import {
   SafeAreaView,
   StatusBar,
   StyleSheet,
-  useColorScheme,
 } from "react-native";
 import Home from "./src/screens/home/Home";
 import { MD3LightTheme, Provider } from "react-native-paper";

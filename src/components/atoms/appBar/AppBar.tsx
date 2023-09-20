@@ -12,7 +12,7 @@ const AppBar = ({
    */
   return (
     <Appbar.Header safeAreaInsets={{ top: 0 }} statusBarHeight={0}>
-      {showBackButton && <Appbar.BackAction onPress={onBackButtonPress} />}
+      {showBackButton && <Appbar.BackAction testID="app-bar-back-action" onPress={onBackButtonPress} />}
 
       <Appbar.Content title={<Text variant="titleMedium">{title}</Text>}/>
       {showCamera && (

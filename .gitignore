@@ -59,3 +59,7 @@ buck-out/
 *.jsbundle
 ios/Pods/*
 vendor/*
+
+# Tests
+.jest
+__tests__/__snapshots__
