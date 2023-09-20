@@ -1,5 +1,3 @@
-import { Timeslot } from "../common";
-
 export const Timeslots: string[] = [
   "08:00 AM",
   "08:30 AM",

@@ -25,7 +25,7 @@ const RadioButtonWithLabel = ({
    * RENDER FUNCTIONS
    */
   return (
-    <View style={styles.radioContainer}>
+    <View style={styles.radioContainer} accessibilityRole={"radio"}>
       <View>
         <Text variant="bodyLarge">{label}</Text>
       </View>

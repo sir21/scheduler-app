@@ -1,6 +1,6 @@
 import { StyleSheet, View } from "react-native";
 import FilterSection from "../../components/organisms/filterSection/FilterSection";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import AppBar from "../../components/atoms/appBar/AppBar";
 import Colors from "../../util/constants/colors";
 import RoomList from "../../components/organisms/roomList/RoomList";
@@ -21,6 +21,7 @@ const Home = () => {
   const [showBackIcon, setShowBackIcon] = useState(false);
   const [webViewUrl, setWebViewUrl] = useState<string | null>(null);
   const [availabilities, setAvailabilities] = useState<RoomAvailability[]>([]);
+  const [showAlert, setShowAlert] = useState<boolean>(false);
 
   /**
    * HELPER FUNCTIONS
@@ -66,9 +67,12 @@ const Home = () => {
     if (!url) {
       <Alert
         title="URL not available!"
-        showAlert={true}
+        showAlert={showAlert}
         description="Scan the QR code again"
         buttonText="Cancel"
+        hideAlert={() => {
+          setShowAlert(false);
+        }}
       />;
       return;
     }
