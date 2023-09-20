@@ -63,3 +63,4 @@ vendor/*
 # Tests
 .jest
 __tests__/__snapshots__
+coverage

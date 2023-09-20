@@ -37,7 +37,7 @@ const InputDate = ({ label, value, onDateChange }: InputDateProps) => {
           }
           onPress={() => toggleDatePicker(true)}
         >
-          <DisplayDateTime value={date.toDateString()} label={label} />
+          <DisplayDateTime value={date?.toDateString()} label={label} />
         </Pressable>
       </View>
       <DatePicker

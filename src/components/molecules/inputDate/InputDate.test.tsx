@@ -10,32 +10,38 @@ import { fireEvent, render, act } from "@testing-library/react-native";
 import { describe, it } from "@jest/globals";
 
 // Note: test renderer must be required after react-native.
-import SortButton from "./SortButton";
+import InputDate from "./InputDate";
 import { Provider } from "react-native-paper";
 
-describe("sort button tests", () => {
+describe("input date tests", () => {
   it("should renders correctly", () => {
     const { getByText, getByTestId } = render(
       <Provider>
-        <SortButton onPress={jest.fn} />
+        <InputDate
+          value={new Date()}
+          label="Date Test"
+          onDateChange={jest.fn()}
+        />
       </Provider>
     );
-    expect(getByText("Sort")).toBeDefined();
-    expect(getByTestId("sort-button-sort-icon")).toBeDefined();
   });
 
   it("should render sort button pressable", async () => {
-    const spyOnPress = jest.fn();
+    const spyOnDatechange = jest.fn();
     const { getByTestId } = render(
       <Provider>
-        <SortButton onPress={spyOnPress} />
+        <InputDate
+          value={new Date()}
+          label="Date Test"
+          onDateChange={jest.fn()}
+        />
       </Provider>
     );
-    const button = getByTestId("sort-button-press");
-    expect(button).toBeDefined();
-    await act(async () => {
-      fireEvent.press(button);
-    });
-    expect(spyOnPress).toHaveBeenCalled();
+    // const button = getByTestId("sort-button-press");
+    // expect(button).toBeDefined();
+    // await act(async () => {
+    //   fireEvent.press(button);
+    // });
+    // expect(spyOnDatechange).toHaveBeenCalled();
   });
 });

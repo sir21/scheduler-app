@@ -49,6 +49,8 @@ const InputTimeslot = ({
         onChange={handleDropdownChange}
         itemTextStyle={styles.textStyles}
         selectedTextStyle={styles.textStyles}
+        itemTestIDField="ddi"
+        testID="item-timeslot-input"
         value={timeslot}
       />
       <Divider bold />
