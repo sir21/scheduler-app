@@ -16,20 +16,8 @@ import {
 import Home from "./src/screens/home/Home";
 import { MD3LightTheme, Provider } from "react-native-paper";
 import Colors from "./src/util/constants/colors";
-// import { Camera } from "react-native-vision-camera";
 
 function App(): JSX.Element {
-  const colorScheme = useColorScheme();
-
-  // useEffect(() => {
-  //   async function getPermission() {
-  //     const permission = await Camera.requestCameraPermission();
-  //     console.log(`Camera permission status: ${permission}`);
-  //     if (permission === "denied") await Linking.openSettings();
-  //   }
-  //   getPermission();
-  // }, []);
-
   const theme = {
     ...MD3LightTheme,
     colors: {

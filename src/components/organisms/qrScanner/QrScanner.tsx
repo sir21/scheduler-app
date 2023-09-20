@@ -4,8 +4,8 @@ import {
   useCameraDevices,
   useFrameProcessor,
 } from "react-native-vision-camera";
-import { Text } from "react-native-paper";
-import { BackHandler, StyleSheet } from "react-native";
+import { Snackbar, Text } from "react-native-paper";
+import { BackHandler, StyleSheet, View } from "react-native";
 import {
   Barcode,
   BarcodeFormat,
@@ -13,7 +13,7 @@ import {
 } from "vision-camera-code-scanner";
 import { runOnJS } from "react-native-reanimated";
 
-const QrScanner = ({ onBackPress }: QrScannerProps) => {
+const QrScanner = ({ onBackPress, onUrlClicked }: QrScannerProps) => {
   const camera = useRef(null);
   const devices = useCameraDevices();
   const device = devices.back;
@@ -35,12 +35,11 @@ const QrScanner = ({ onBackPress }: QrScannerProps) => {
     if (hideCamera) {
       onBackPress();
     }
-  },[hideCamera])
+  }, [hideCamera]);
 
   useEffect(() => {
     (async () => {
       const status = await Camera.requestCameraPermission();
-      console.log(status);
       setHasPermission(status === "authorized");
     })();
   }, []);
@@ -76,13 +75,27 @@ const QrScanner = ({ onBackPress }: QrScannerProps) => {
             device={device}
             isActive={true}
             frameProcessor={frameProcessor}
-            frameProcessorFps={5}
+            frameProcessorFps={10}
           />
-          {barcodes.map((barcode, idx) => (
-            <Text key={idx} style={styles.barcodeTextURL}>
-              {barcode.displayValue}
-            </Text>
-          ))}
+          {barcodes.length === 0 && (
+            <View style={styles.barcodeTextContainer}>
+              <Text style={styles.barcodeTextURL}>Scan barcode</Text>
+            </View>
+          )}
+          {barcodes.length > 0 && (
+            <Snackbar
+              visible={barcodes.length > 0}
+              onDismiss={() => {}}
+              action={{
+                label: `Open link: ${barcodes[0].displayValue}`,
+                onPress: () => {
+                  onUrlClicked(barcodes[0].displayValue);
+                },
+              }}
+            >
+              <Text>Found it</Text>
+            </Snackbar>
+          )}
         </>
       )}
     </>
@@ -95,10 +108,17 @@ const styles = StyleSheet.create({
     color: "white",
     fontWeight: "bold",
   },
+  barcodeTextContainer: {
+    flex: 1,
+    justifyContent: "flex-start",
+    alignItems: "center",
+    paddingTop: 50,
+  },
 });
 
 type QrScannerProps = {
   onBackPress: () => void;
+  onUrlClicked: (url?: string) => void;
 };
 
 export default QrScanner;

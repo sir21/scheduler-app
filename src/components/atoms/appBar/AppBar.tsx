@@ -2,19 +2,21 @@ import { Appbar, Text } from "react-native-paper";
 
 const AppBar = ({
   title,
-  onBackButtonClick,
-  onCameraButtonClick,
+  showBackButton,
+  showCamera,
+  onBackButtonPress,
+  onCameraButtonPress,
 }: AppBarProps) => {
     /**
    * RENDER FUNCTIONS
    */
   return (
     <Appbar.Header safeAreaInsets={{ top: 0 }} statusBarHeight={0}>
-      {onBackButtonClick && <Appbar.BackAction onPress={onBackButtonClick} />}
+      {showBackButton && <Appbar.BackAction onPress={onBackButtonPress} />}
 
       <Appbar.Content title={<Text variant="titleMedium">{title}</Text>}/>
-      {onCameraButtonClick && (
-        <Appbar.Action icon="camera" onPress={onCameraButtonClick} />
+      {showCamera && (
+        <Appbar.Action icon="camera" onPress={onCameraButtonPress} />
       )}
     </Appbar.Header>
   );
@@ -22,8 +24,10 @@ const AppBar = ({
 
 type AppBarProps = {
   title: string;
-  onBackButtonClick?: () => void;
-  onCameraButtonClick?: () => void;
+  onBackButtonPress?: () => void;
+  onCameraButtonPress?: () => void;
+  showCamera?: boolean;
+  showBackButton?: boolean;
 };
 
 export default AppBar;
