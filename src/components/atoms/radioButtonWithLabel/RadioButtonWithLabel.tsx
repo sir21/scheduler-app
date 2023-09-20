@@ -32,9 +32,19 @@ const RadioButtonWithLabel = ({
       <View>
         <Pressable onPress={handleRadioButtonPress}>
           {checked ? (
-            <Icon name="radio-button-checked" size={26} color={Colors.secondary} />
+            <Icon
+              name="radio-button-checked"
+              testID="radio-button-with-label-checked"
+              size={26}
+              color={Colors.secondary}
+            />
           ) : (
-            <Icon name="radio-button-unchecked" size={26} color={Colors.secondary} />
+            <Icon
+              name="radio-button-unchecked"
+              testID="radio-button-with-label-not-checked"
+              size={26}
+              color={Colors.secondary}
+            />
           )}
         </Pressable>
       </View>

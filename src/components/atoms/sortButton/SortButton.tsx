@@ -16,11 +16,12 @@ const SortButton = ({ onPress }: SortButtonProps) => {
             : styles.pressableStyles
         }
         onPress={onPress}
+        testID="sort-button-press"
       >
         <Text variant="labelMedium" style={styles.text}>
           Sort
         </Text>
-        <Icon name="sort" size={20} color={Colors.secondary} />
+        <Icon name="sort" testID="sort-button-sort-icon" size={20} color={Colors.secondary} />
       </Pressable>
     </View>
   );

@@ -16,7 +16,7 @@ const DefaultButton = ({
         type === "primary" ? styles.primaryColors : styles.secondaryColors,
       ]}
     >
-      <Pressable onPress={onPress}>
+      <Pressable onPress={onPress} testID="default-button-press">
         <View style={styles.innerContainer}>
           <Text variant="labelLarge" style={styles.buttonText}>
             {label}
