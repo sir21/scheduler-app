@@ -7,9 +7,8 @@ import RoomList from "../../components/organisms/roomList/RoomList";
 import { getAvailability } from "../../util/requests/requests";
 import { RoomAvailability } from "../../util/common";
 import QrScanner from "../../components/organisms/qrScanner/QrScanner";
-import { WebView, WebViewNavigation } from "react-native-webview";
-import { Text } from "react-native-paper";
-import DefaultButton from "../../components/atoms/defaultButton/DefaultButton";
+import BookingSuccess from "../../components/organisms/bookingSuccess/BookingSuccess";
+import Alert from "../../components/atoms/alert/Alert";
 
 const Home = () => {
   /**
@@ -17,17 +16,20 @@ const Home = () => {
    */
   const [selectedDate, setSelectedDate] = useState<Date>(new Date());
   const [selectedTimeslot, setSelectedTimeslot] = useState<string>("08:00 AM");
-  const [showCamera, setShowCamera] = useState(false);
-  const [showCameraIcon, setShowCameraIcon] = useState(true);
+  const [showCamera, setShowCamera] = useState<boolean>(false);
+  const [showCameraIcon, setShowCameraIcon] = useState<boolean>(true);
   const [showBackIcon, setShowBackIcon] = useState(false);
-  const [showWebView, setShowWebView] = useState(false);
   const [webViewUrl, setWebViewUrl] = useState<string | null>(null);
   const [availabilities, setAvailabilities] = useState<RoomAvailability[]>([]);
-  const webView = useRef(null);
 
   /**
    * HELPER FUNCTIONS
    */
+
+  /**
+   * Handle date and time selection
+   */
+
   const handleDateChange = (date: Date) => {
     setSelectedDate(date);
   };
@@ -36,29 +38,54 @@ const Home = () => {
     setSelectedTimeslot(timeslot);
   };
 
-  const handleCameraClick = () => {
-    setShowCamera(true);
-  };
-
   const getAvailableData = async () => {
     const data = await getAvailability();
     setAvailabilities(data);
   };
 
-  const handleCameraBackPress = () => {
-    setShowCamera(false);
+  /**
+   * Handle camera controls
+   */
+
+  const handleCameraClick = () => {
+    setShowCamera(true);
   };
 
-  const handleUrlSelect = (url?: string) => {
-    if (!url) return; // TODO: Add alert
+  const handleCameraBackPress = () => {
     setShowCamera(false);
-    setShowWebView(true);
+    setShowCameraIcon(true);
+    setWebViewUrl(null);
+    setShowBackIcon(false);
+  };
+
+  /**
+   * Handle QR functions
+   */
+
+  const handleUrlSelect = (url?: string) => {
+    if (!url) {
+      <Alert
+        title="URL not available!"
+        showAlert={true}
+        description="Scan the QR code again"
+        buttonText="Cancel"
+      />;
+      return;
+    }
+    setShowCamera(false);
+    setShowBackIcon(true);
+    setShowCameraIcon(false);
     setWebViewUrl(url);
   };
 
+  /**
+   * USE EFFECT FUNCTIONS
+   */
   useEffect(() => {
-    getAvailableData();
-  }, []);
+    if (selectedDate && selectedTimeslot) {
+      getAvailableData();
+    }
+  }, [selectedDate, selectedTimeslot]);
 
   /**
    * RENDER FUNCTIONS
@@ -79,6 +106,7 @@ const Home = () => {
       <AppBar
         title="Book a Room"
         onCameraButtonPress={handleCameraClick}
+        onBackButtonPress={handleCameraBackPress}
         showCamera={showCameraIcon}
         showBackButton={showBackIcon}
       />
@@ -105,17 +133,6 @@ const Home = () => {
     );
   };
 
-  const handleFallback = (event: WebViewNavigation) => {
-    if (event.url.includes("intent")) {
-      const urls = event.url
-        .split(";")
-        .find((u) => u.includes("S.browser_fallback_url"));
-      if (!urls) return;
-      const url = urls.split("=")[1];
-      setWebViewUrl(url);
-    }
-  };
-
   const handleBackToHome = () => {
     setWebViewUrl(null);
   };
@@ -124,25 +141,11 @@ const Home = () => {
     return (
       <>
         {webViewUrl ? (
-          <View style={{flex: 1, backgroundColor: Colors.background}}>
-            <WebView
-              source={{ uri: webViewUrl, method: "GET" }}
-              originWhitelist={["intent://*"]}
-              allowUniversalAccessFromFileURLs={true}
-              onNavigationStateChange={handleFallback}
-              ref={webView}
-              onError={(err) => {
-                err.preventDefault();
-              }}
-              style={{ flex: 1 }}
-            />
-            <DefaultButton
-              type="primary"
-              label="Back to Home"
-              onPress={handleBackToHome}
-              buttonStyles={{marginBottom: 20}}
-            />
-          </View>
+          <BookingSuccess
+            url={webViewUrl}
+            onBackToHomePress={handleBackToHome}
+            updateWebViewUrl={setWebViewUrl}
+          />
         ) : (
           <></>
         )}
