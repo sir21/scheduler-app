@@ -20,6 +20,9 @@ Note: App will run on light mode friendly manner in dark mode enabled devices.
 
 `npx react-native run-android` will start android app
 
+*Issues*
+If you came across of `Task :app:validateSigningDebug FAILED`, Try running `keytool -genkey -v -keystore debug.keystore -storepass android -alias androiddebugkey -keypass android -keyalg RSA -keysize 2048 -validity 10000` in `android/app/` or use *debug.keystore* file you have 
+
 ### iOS
 
 `npx react-native run-ios` will start ios app
