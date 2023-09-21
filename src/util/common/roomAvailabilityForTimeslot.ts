@@ -1,4 +1,4 @@
-import { RoomAvailableStatus } from "./roomAvailabilityStatus";
+import { RoomAvailableStatus } from "./RoomAvailabilityStatus";
 
 export interface RoomAvailabilityForTimeslot {
     capacity: number;

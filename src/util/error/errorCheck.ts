@@ -1,6 +1,6 @@
 import { isAxiosError } from "axios";
 import { ErrorObject } from "../common";
-import { ErrCodes } from "../constants/errorCodes";
+import { ErrCodes } from "../constants/ErrorCodes";
 
 export const errorCheck = (err: any): ErrorObject => {
   if (isAxiosError(err)) {

@@ -2,9 +2,9 @@ import { useState } from "react";
 import { StyleSheet, View } from "react-native";
 import { Dropdown } from "react-native-element-dropdown";
 
-import { Timeslots } from "../../../util/constants/timeslots";
+import { Timeslots } from "../../../util/constants/Timeslots";
 import { Divider, Text } from "react-native-paper";
-import Colors from "../../../util/constants/colors";
+import Colors from "../../../util/constants/Colors";
 
 const InputTimeslot = ({
   label,

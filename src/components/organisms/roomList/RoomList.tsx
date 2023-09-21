@@ -2,12 +2,11 @@ import { useEffect, useState } from "react";
 import { FlatList, Modal, StyleSheet, View } from "react-native";
 import { Text } from "react-native-paper";
 
-import Colors from "../../../util/constants/colors";
+import Colors from "../../../util/constants/Colors";
 import SortButton from "../../atoms/sortButton/SortButton";
 import Sort from "../../molecules/sort/Sort";
-import { SortOptionsType } from "../../../util/common/sortOptionType";
-import { RoomAvailability, Timeslot } from "../../../util/common";
-import { RoomAvailabilityForTimeslot } from "../../../util/common/roomAvailabilityForTimeslot";
+import { SortOptionsType } from "../../../util/common/SortOptionType";
+import { RoomAvailability, RoomAvailabilityForTimeslot, Timeslot } from "../../../util/common";
 import RoomCard from "../../atoms/roomCard/RoomCard";
 
 const RoomList = ({

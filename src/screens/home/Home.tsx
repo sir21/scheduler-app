@@ -3,14 +3,14 @@ import { StyleSheet, View, Alert as ReactNativeAlert } from "react-native";
 
 import FilterSection from "../../components/organisms/filterSection/FilterSection";
 import AppBar from "../../components/atoms/appBar/AppBar";
-import Colors from "../../util/constants/colors";
+import Colors from "../../util/constants/Colors";
 import RoomList from "../../components/organisms/roomList/RoomList";
-import { getAvailability } from "../../util/requests/requests";
+import { getAvailability } from "../../util/requests/Requests";
 import { RoomAvailability } from "../../util/common";
 import QrScanner from "../../components/organisms/qrScanner/QrScanner";
 import BookingResultDisplay from "../../components/organisms/bookingResultDisplay/BookingResultDisplay";
 import Alert from "../../components/atoms/alert/Alert";
-import { errorCheck } from "../../util/error/errorCheck";
+import { errorCheck } from "../../util/error/ErrorCheck";
 
 const Home = () => {
   /**

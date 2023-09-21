@@ -12,7 +12,7 @@ import { describe, it } from "@jest/globals";
 // Note: test renderer must be required after react-native.
 import Home from "./Home";
 import { Provider } from "react-native-paper";
-import { getAvailability } from "../../util/requests/requests";
+import { getAvailability } from "../../util/requests/Requests";
 import { Alert } from "react-native";
 
 jest.mock("../../components/organisms/qrScanner/QrScanner");

@@ -1,7 +1,7 @@
 import { Alert, StyleSheet, View } from "react-native";
 import WebView, { WebViewNavigation } from "react-native-webview";
 
-import Colors from "../../../util/constants/colors";
+import Colors from "../../../util/constants/Colors";
 import DefaultButton from "../../atoms/defaultButton/DefaultButton";
 
 const BookingResultDisplay = ({

@@ -6,7 +6,7 @@
 import { describe, it } from "@jest/globals";
 
 // Note: test renderer must be required after react-native.
-import { errorCheck } from "./errorCheck";
+import { errorCheck } from "./ErrorCheck";
 import { AxiosError, isAxiosError } from "axios";
 
 jest.mock("axios");

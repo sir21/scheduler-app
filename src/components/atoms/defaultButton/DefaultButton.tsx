@@ -1,7 +1,7 @@
 import { Pressable, StyleSheet, View, ViewStyle } from "react-native";
 import { Text } from "react-native-paper";
 
-import Colors from "../../../util/constants/colors";
+import Colors from "../../../util/constants/Colors";
 
 const DefaultButton = ({
   type,
