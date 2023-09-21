@@ -91,6 +91,13 @@ const Home = () => {
     setWebViewUrl(url);
   };
 
+  const handleBackToHome = () => {
+    setWebViewUrl(null);
+    setShowCameraIcon(true);
+    setShowBackIcon(false);
+    getAvailableData();
+  };
+
   /**
    * USE EFFECT FUNCTIONS
    */
@@ -144,12 +151,6 @@ const Home = () => {
         />
       </View>
     );
-  };
-
-  const handleBackToHome = () => {
-    setWebViewUrl(null);
-    setShowCameraIcon(true)
-    setShowBackIcon(false);
   };
 
   const renderWebView = () => {
