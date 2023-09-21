@@ -22,7 +22,8 @@ const BookingResultDisplay = ({
     }
   };
 
-  const handleHttpError = () => {
+  const handleHttpError = (err: any) => {
+    if (err.nativeEvent?.description === "net::ERR_UNKNOWN_URL_SCHEME") return;
     Alert.alert(
       "URL loading error",
       "Check your QR code and internet connectivityr",
@@ -45,7 +46,7 @@ const BookingResultDisplay = ({
           testID="web-view-display"
           onError={(err) => {
             err.preventDefault();
-            handleHttpError();
+            handleHttpError(err);
           }}
         />
       ) : null}
