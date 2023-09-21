@@ -6,6 +6,7 @@ import {
 } from "react-native";
 import { Text } from "react-native-paper";
 import Icon from "react-native-vector-icons/MaterialIcons";
+
 import Colors from "../../../util/constants/colors";
 
 const RadioButtonWithLabel = ({

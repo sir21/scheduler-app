@@ -1,5 +1,6 @@
 import { StyleSheet, View } from "react-native";
 import { Text } from "react-native-paper";
+
 import { RoomAvailableStatus } from "../../../util/common";
 import Colors from "../../../util/constants/colors";
 

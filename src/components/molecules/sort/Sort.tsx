@@ -1,7 +1,8 @@
+import { useState } from "react";
 import { StyleSheet, View } from "react-native";
 import { Text } from "react-native-paper";
+
 import RadioButtonWithLabel from "../../atoms/radioButtonWithLabel/RadioButtonWithLabel";
-import { useState } from "react";
 import { SortOptionsType } from "../../../util/common/sortOptionType";
 import DefaultButton from "../../atoms/defaultButton/DefaultButton";
 

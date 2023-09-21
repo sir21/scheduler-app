@@ -1,13 +1,14 @@
+import { useEffect, useState } from "react";
 import { FlatList, Modal, StyleSheet, View } from "react-native";
+import { Text } from "react-native-paper";
+
 import Colors from "../../../util/constants/colors";
 import SortButton from "../../atoms/sortButton/SortButton";
-import { useEffect, useState } from "react";
 import Sort from "../../molecules/sort/Sort";
 import { SortOptionsType } from "../../../util/common/sortOptionType";
 import { RoomAvailability, Timeslot } from "../../../util/common";
 import { RoomAvailabilityForTimeslot } from "../../../util/common/roomAvailabilityForTimeslot";
 import RoomCard from "../../atoms/roomCard/RoomCard";
-import { Text } from "react-native-paper";
 
 const RoomList = ({
   availabilities,
@@ -74,7 +75,7 @@ const RoomList = ({
   };
 
   const handleRoomAvailability = () => {
-    if (!availabilities) {
+    if (!availabilities || availabilities.length === 0) {
       setRoomList([]);
     }
     const time: Timeslot = selectedTimeslot.split(" ")[0] as Timeslot;

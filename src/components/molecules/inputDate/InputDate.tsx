@@ -1,7 +1,8 @@
-import { Pressable, StyleSheet, View } from "react-native";
-import DisplayDateTime from "../../atoms/displayDateTime/DisplayDateTime";
 import { useState } from "react";
+import { Pressable, StyleSheet, View } from "react-native";
 import DatePicker from "react-native-date-picker";
+
+import DisplayDateTime from "../../atoms/displayDateTime/DisplayDateTime";
 
 const InputDate = ({ label, value, onDateChange }: InputDateProps) => {
   /**

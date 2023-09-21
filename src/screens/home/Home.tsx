@@ -1,6 +1,7 @@
-import { StyleSheet, View, Alert as ReactNativeAlert } from "react-native";
-import FilterSection from "../../components/organisms/filterSection/FilterSection";
 import { useEffect, useState } from "react";
+import { StyleSheet, View, Alert as ReactNativeAlert } from "react-native";
+
+import FilterSection from "../../components/organisms/filterSection/FilterSection";
 import AppBar from "../../components/atoms/appBar/AppBar";
 import Colors from "../../util/constants/colors";
 import RoomList from "../../components/organisms/roomList/RoomList";
