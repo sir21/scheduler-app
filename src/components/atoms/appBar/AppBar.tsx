@@ -16,7 +16,7 @@ const AppBar = ({
 
       <Appbar.Content title={<Text variant="titleMedium">{title}</Text>}/>
       {showCamera && (
-        <Appbar.Action icon="camera" onPress={onCameraButtonPress} />
+        <Appbar.Action testID="app-bar-camera-action" icon="camera" onPress={onCameraButtonPress} />
       )}
     </Appbar.Header>
   );

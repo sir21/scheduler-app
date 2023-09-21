@@ -15,6 +15,7 @@ const DefaultButton = ({
         buttonStyles,
         type === "primary" ? styles.primaryColors : styles.secondaryColors,
       ]}
+      accessibilityRole={"button"}
     >
       <Pressable onPress={onPress} testID="default-button-press">
         <View style={styles.innerContainer}>

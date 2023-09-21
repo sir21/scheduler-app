@@ -112,7 +112,9 @@ const RoomList = ({
       <View style={styles.container}>
         <View style={styles.headerContainer}>
           <View>
-            <Text style={styles.secondaryText} variant="bodySmall">Rooms</Text>
+            <Text style={styles.secondaryText} variant="bodySmall">
+              Rooms
+            </Text>
           </View>
           <View>
             <SortButton onPress={handleSortPress} />
@@ -122,6 +124,7 @@ const RoomList = ({
           <FlatList
             data={roomList}
             contentContainerStyle={{ flexGrow: 1 }}
+            keyExtractor={(item) => item.name}
             renderItem={({ item }) => {
               return (
                 <RoomCard

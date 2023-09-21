@@ -5,7 +5,7 @@ import Colors from "../../../util/constants/colors";
 
 const RoomCard = ({ name, status, level, capacity }: RoomCardProps) => {
   return (
-    <View style={styles.cardContainer}>
+    <View style={styles.cardContainer} testID="room-card-item">
       <View style={styles.rowContainer}>
         <View>
           <Text variant="titleMedium">{name}</Text>

@@ -3,11 +3,11 @@ import WebView, { WebViewNavigation } from "react-native-webview";
 import Colors from "../../../util/constants/colors";
 import DefaultButton from "../../atoms/defaultButton/DefaultButton";
 
-const BookingSuccess = ({
+const BookingResultDisplay = ({
   url,
   onBackToHomePress,
   updateWebViewUrl,
-}: BookingSuccessProps) => {
+}: BookingResultDisplayProps) => {
   /**
    * HELPER FUNCTIONS
    */
@@ -26,17 +26,18 @@ const BookingSuccess = ({
    * RENDER FUNCTIONS
    */
   return (
-    <View style={styles.container}>
-      <WebView
-        source={{ uri: url, method: "GET" }}
-        originWhitelist={["intent://*"]}
-        allowUniversalAccessFromFileURLs={true}
-        onNavigationStateChange={handleFallback}
-        onError={(err) => {
-          err.preventDefault();
-        }}
-        style={styles.webView}
-      />
+    <View style={styles.container} testID="booking-result-display">
+      {url ? (
+        <WebView
+          source={{ uri: url, method: "GET" }}
+          originWhitelist={["intent://*"]}
+          allowUniversalAccessFromFileURLs={true}
+          onNavigationStateChange={handleFallback}
+          style={styles.webView}
+          testID="web-view-display"
+        />
+      ) : null}
+
       <DefaultButton
         type="primary"
         label="Back to Home"
@@ -60,10 +61,10 @@ const styles = StyleSheet.create({
   },
 });
 
-type BookingSuccessProps = {
-  url: string;
+type BookingResultDisplayProps = {
+  url?: string;
   updateWebViewUrl: (url: string) => void;
   onBackToHomePress: () => void;
 };
 
-export default BookingSuccess;
+export default BookingResultDisplay;

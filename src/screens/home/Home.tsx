@@ -7,7 +7,7 @@ import RoomList from "../../components/organisms/roomList/RoomList";
 import { getAvailability } from "../../util/requests/requests";
 import { RoomAvailability } from "../../util/common";
 import QrScanner from "../../components/organisms/qrScanner/QrScanner";
-import BookingSuccess from "../../components/organisms/bookingSuccess/BookingSuccess";
+import BookingResultDisplay from "../../components/organisms/bookingResultDisplay/BookingResultDisplay";
 import Alert from "../../components/atoms/alert/Alert";
 
 const Home = () => {
@@ -96,7 +96,7 @@ const Home = () => {
    */
   const renderCamera = () => {
     return (
-      <View style={styles.outerContainer}>
+      <View style={styles.outerContainer} testID="qr-scanner">
         <QrScanner
           onBackPress={handleCameraBackPress}
           onUrlClicked={handleUrlSelect}
@@ -119,7 +119,7 @@ const Home = () => {
 
   const renderRoomList = () => {
     return (
-      <View style={styles.innerContainer}>
+      <View style={styles.innerContainer} testID="room-list">
         {/* Filter section */}
         <FilterSection
           date={selectedDate}
@@ -145,7 +145,7 @@ const Home = () => {
     return (
       <>
         {webViewUrl ? (
-          <BookingSuccess
+          <BookingResultDisplay
             url={webViewUrl}
             onBackToHomePress={handleBackToHome}
             updateWebViewUrl={setWebViewUrl}
@@ -159,7 +159,7 @@ const Home = () => {
 
   const renderHomeView = () => {
     return (
-      <View style={styles.outerContainer}>
+      <View style={styles.outerContainer} testID="home-view">
         {renderAppBar()}
         {webViewUrl && renderWebView()}
         {!webViewUrl && renderRoomList()}

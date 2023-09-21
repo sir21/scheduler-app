@@ -1,6 +1,5 @@
 import { StyleSheet, View } from "react-native";
 import InputDate from "../../molecules/inputDate/InputDate";
-import { Timeslot } from "../../../util/common";
 import InputTimeslot from "../../molecules/inputTimeslot/InputTimeslot";
 
 const FilterSection = ({
