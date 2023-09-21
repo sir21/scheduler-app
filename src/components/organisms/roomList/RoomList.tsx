@@ -125,6 +125,11 @@ const RoomList = ({
             data={roomList}
             contentContainerStyle={{ flexGrow: 1 }}
             keyExtractor={(item) => item.name}
+            ListEmptyComponent={
+              <View style={styles.errorContainer}>
+                <Text>Room list unavailable</Text>
+              </View>
+            }
             renderItem={({ item }) => {
               return (
                 <RoomCard
@@ -207,6 +212,11 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.5,
     shadowRadius: 4,
     elevation: 5,
+  },
+  errorContainer: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
   },
 });
 
