@@ -1,4 +1,4 @@
-import { StyleSheet, View } from "react-native";
+import { Alert, StyleSheet, View } from "react-native";
 import WebView, { WebViewNavigation } from "react-native-webview";
 import Colors from "../../../util/constants/colors";
 import DefaultButton from "../../atoms/defaultButton/DefaultButton";
@@ -22,6 +22,14 @@ const BookingResultDisplay = ({
     }
   };
 
+  const handleHttpError = () => {
+    Alert.alert(
+      "URL loading error",
+      "Check your QR code and internet connectivityr",
+      [{ text: "OK", onPress: () => console.log("OK Pressed") }]
+    );
+  };
+
   /**
    * RENDER FUNCTIONS
    */
@@ -35,6 +43,10 @@ const BookingResultDisplay = ({
           onNavigationStateChange={handleFallback}
           style={styles.webView}
           testID="web-view-display"
+          onError={(err) => {
+            err.preventDefault();
+            handleHttpError();
+          }}
         />
       ) : null}
 

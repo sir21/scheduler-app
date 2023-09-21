@@ -147,6 +147,8 @@ const Home = () => {
 
   const handleBackToHome = () => {
     setWebViewUrl(null);
+    setShowCameraIcon(true)
+    setShowBackIcon(false);
   };
 
   const renderWebView = () => {
