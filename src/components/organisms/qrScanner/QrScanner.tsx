@@ -59,7 +59,11 @@ const QrScanner = ({ onBackPress, onUrlClicked }: QrScannerProps) => {
   }, []);
 
   if (device == null) {
-    return <Text>Camera not available</Text>;
+    return (
+      <View style={styles.cameraErrorMessage}>
+        <Text>Camera not available</Text>
+      </View>
+    );
   }
 
   return (
@@ -114,6 +118,11 @@ const styles = StyleSheet.create({
     alignItems: "center",
     paddingTop: 50,
   },
+  cameraErrorMessage: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center"
+  }
 });
 
 type QrScannerProps = {

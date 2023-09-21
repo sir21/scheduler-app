@@ -1,4 +1,4 @@
-import { StyleSheet, View } from "react-native";
+import { StyleSheet, View, Alert as ReactNativeAlert } from "react-native";
 import FilterSection from "../../components/organisms/filterSection/FilterSection";
 import { useEffect, useState } from "react";
 import AppBar from "../../components/atoms/appBar/AppBar";
@@ -9,6 +9,7 @@ import { RoomAvailability } from "../../util/common";
 import QrScanner from "../../components/organisms/qrScanner/QrScanner";
 import BookingResultDisplay from "../../components/organisms/bookingResultDisplay/BookingResultDisplay";
 import Alert from "../../components/atoms/alert/Alert";
+import { errorCheck } from "../../util/error/errorCheck";
 
 const Home = () => {
   /**
@@ -40,8 +41,15 @@ const Home = () => {
   };
 
   const getAvailableData = async () => {
-    const data = await getAvailability();
-    setAvailabilities(data);
+    try {
+      const response = await getAvailability();
+      setAvailabilities(response.data);
+    } catch (err) {
+      const errorMessage = errorCheck(err);
+      ReactNativeAlert.alert(errorMessage.title, errorMessage.description, [
+        { text: "OK", onPress: () => console.log("OK Pressed") },
+      ]);
+    }
   };
 
   /**
